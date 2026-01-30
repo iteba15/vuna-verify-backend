@@ -7,7 +7,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'latitude', 'longitude', 
             'tiff_file', 'cached_flux', 'cached_co2', 
-            'cached_revenue', 'updated_at'
+            'cached_revenue', 'geojson_boundary', 'updated_at'
         ]
 
 class VerificationInputSerializer(serializers.Serializer):

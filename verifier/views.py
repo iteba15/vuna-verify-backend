@@ -7,12 +7,21 @@ from .serializers import ProjectSerializer, VerificationInputSerializer
 from .services import VunaVerifier
 from django.core.files.base import ContentFile
 
+from django.shortcuts import render
+
 class ProjectListView(ListAPIView):
     """
     Returns a list of all projects for the interactive map.
     """
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+def map_view(request):
+    """
+    Renders the interactive map page.
+    """
+    return render(request, 'verifier/map.html')
+
 
 class VerifyCreditView(APIView):
     """

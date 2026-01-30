@@ -15,6 +15,9 @@ class Project(models.Model):
     cached_co2 = models.FloatField(null=True, blank=True, help_text="Annual Tonnes CO2")
     cached_revenue = models.FloatField(null=True, blank=True, help_text="Estimated Revenue USD")
     
+    # Boundary Data (GeoJSON Polygon)
+    geojson_boundary = models.TextField(null=True, blank=True, help_text="GeoJSON Polygon string")
+    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
