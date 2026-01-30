@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+
+# Django
+db.sqlite3
+media/
+
+# Test & Verification Artifacts
+mau_forest_mock.tif
+generate_dummy_tif.py
+test_model.py
+test_api.py

@@ -4,3 +4,7 @@ xgboost
 rasterio
 numpy
 flask
+django
+djangorestframework
+requests
+django-cors-headers
