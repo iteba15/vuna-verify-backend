@@ -1,0 +1,6 @@
+torch
+torchvision
+xgboost
+rasterio
+numpy
+flask
