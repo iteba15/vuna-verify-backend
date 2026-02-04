@@ -1,0 +1,343 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* VunaVerify Design System - Inspired by CYNK.io
+   A premium carbon verification platform aesthetic
+   Deep forest greens, warm gold accents, organic patterns
+*/
+
+
+@layer base {
+  :root {
+    /* Core Colors - Forest & Earth */
+    --background: 147 35% 12%; /* Deep forest #1B4332 */
+    --foreground: 45 20% 97%; /* Off-white #FAF9F6 */
+
+    --card: 147 35% 15%;
+    --card-foreground: 45 20% 97%;
+
+    --popover: 147 35% 12%;
+    --popover-foreground: 45 20% 97%;
+
+    /* Primary - Rich Emerald */
+    --primary: 153 40% 30%; /* Emerald #2D6A4F */
+    --primary-foreground: 45 20% 97%;
+
+    /* Secondary - Deeper Green */
+    --secondary: 147 35% 18%;
+    --secondary-foreground: 45 20% 97%;
+
+    /* Muted - Subtle Green */
+    --muted: 147 25% 22%;
+    --muted-foreground: 45 10% 75%;
+
+    /* Accent - Warm Gold */
+    --accent: 30 45% 65%; /* Gold/Tan #D4A574 */
+    --accent-foreground: 147 35% 12%;
+
+    /* Cream - Light Accent */
+    --cream: 60 56% 91%; /* Soft beige #F5F5DC */
+    --cream-foreground: 147 35% 12%;
+
+    /* UI Colors */
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 45 20% 97%;
+
+    --border: 147 25% 25%;
+    --input: 147 25% 25%;
+    --ring: 30 45% 65%;
+
+    --radius: 0.75rem;
+
+    /* Custom VunaVerify tokens */
+    --forest-deep: 147 35% 10%;
+    --forest-mid: 147 35% 15%;
+    --forest-light: 153 40% 25%;
+    --gold-warm: 30 45% 65%;
+    --gold-light: 35 55% 75%;
+    --earth-brown: 25 30% 35%;
+
+    /* Typography */
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Shadows */
+    --shadow-glow: 0 0 60px hsla(30, 45%, 65%, 0.15);
+    --shadow-card: 0 8px 32px hsla(147, 35%, 5%, 0.4);
+    --shadow-elevated: 0 24px 64px hsla(147, 35%, 5%, 0.5);
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(147 35% 12%) 0%, hsl(147 35% 18%) 50%, hsl(153 40% 20%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(30 45% 65%) 0%, hsl(35 55% 70%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(147 35% 16%) 0%, hsl(147 35% 13%) 100%);
+
+    /* Sidebar - keeping consistent */
+    --sidebar-background: 147 35% 10%;
+    --sidebar-foreground: 45 20% 90%;
+    --sidebar-primary: 30 45% 65%;
+    --sidebar-primary-foreground: 147 35% 12%;
+    --sidebar-accent: 147 35% 20%;
+    --sidebar-accent-foreground: 45 20% 97%;
+    --sidebar-border: 147 25% 20%;
+    --sidebar-ring: 30 45% 65%;
+  }
+
+  /* Light mode alternative (cream background) */
+  .light {
+    --background: 60 56% 96%;
+    --foreground: 147 35% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 147 35% 12%;
+
+    --primary: 153 40% 30%;
+    --primary-foreground: 45 20% 97%;
+
+    --secondary: 60 30% 92%;
+    --secondary-foreground: 147 35% 12%;
+
+    --muted: 60 20% 88%;
+    --muted-foreground: 147 20% 35%;
+
+    --accent: 30 45% 55%;
+    --accent-foreground: 45 20% 97%;
+
+    --border: 60 20% 85%;
+    --input: 60 20% 85%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  /* Organic pattern background */
+  .pattern-organic {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0c16.569 0 30 13.431 30 30 0 16.569-13.431 30-30 30C13.431 60 0 46.569 0 30 0 13.431 13.431 0 30 0zm0 5C16.193 5 5 16.193 5 30s11.193 25 25 25 25-11.193 25-25S43.807 5 30 5z' fill='%232D6A4F' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
+  }
+
+  /* Topographic/contour pattern like CYNK */
+  .pattern-topo {
+    background-image: 
+      repeating-radial-gradient(
+        circle at 50% 50%,
+        transparent 0,
+        transparent 40px,
+        hsla(153, 40%, 30%, 0.06) 40px,
+        hsla(153, 40%, 30%, 0.06) 42px
+      );
+  }
+
+  /* Gradient text */
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(30 45% 65%) 0%, hsl(35 60% 72%) 100%);
+  }
+
+  /* Hero section styling */
+  .hero-section {
+    background: var(--gradient-hero);
+    @apply relative overflow-hidden;
+  }
+
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-radial-gradient(
+        circle at 80% 20%,
+        transparent 0,
+        transparent 100px,
+        hsla(153, 40%, 30%, 0.04) 100px,
+        hsla(153, 40%, 30%, 0.04) 102px
+      ),
+      repeating-radial-gradient(
+        circle at 20% 80%,
+        transparent 0,
+        transparent 80px,
+        hsla(153, 40%, 30%, 0.03) 80px,
+        hsla(153, 40%, 30%, 0.03) 82px
+      );
+    pointer-events: none;
+  }
+
+  /* Card glow effect */
+  .card-glow {
+    @apply relative;
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-glow::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, hsla(30, 45%, 65%, 0.2) 0%, transparent 50%);
+    z-index: -1;
+  }
+
+  /* Button variants */
+  .btn-hero {
+    @apply inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-medium transition-all duration-300;
+    background: linear-gradient(135deg, hsl(30 45% 65%) 0%, hsl(35 50% 60%) 100%);
+    color: hsl(147 35% 10%);
+    box-shadow: 0 4px 20px hsla(30, 45%, 65%, 0.3);
+  }
+
+  .btn-hero:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px hsla(30, 45%, 65%, 0.4);
+  }
+
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center rounded-full px-8 py-4 text-base font-medium transition-all duration-300;
+    border: 1.5px solid hsla(45, 20%, 97%, 0.3);
+    color: hsl(45 20% 97%);
+    background: transparent;
+  }
+
+  .btn-outline-light:hover {
+    background: hsla(45, 20%, 97%, 0.1);
+    border-color: hsla(45, 20%, 97%, 0.5);
+  }
+
+  /* Section divider */
+  .section-divider {
+    @apply w-24 h-1 mx-auto rounded-full;
+    background: var(--gradient-accent);
+  }
+
+  /* Stat card */
+  .stat-highlight {
+    @apply font-display text-5xl md:text-6xl font-bold;
+    background: linear-gradient(135deg, hsl(30 45% 65%) 0%, hsl(35 60% 72%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Feature card */
+  .feature-card {
+    @apply relative rounded-2xl p-8 transition-all duration-500;
+    background: var(--gradient-card);
+    border: 1px solid hsla(153, 40%, 30%, 0.2);
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    border-color: hsla(30, 45%, 65%, 0.3);
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Verification tier styling */
+  .verification-tier {
+    @apply relative flex flex-col items-center text-center p-8 rounded-2xl;
+    background: linear-gradient(180deg, hsla(153, 40%, 30%, 0.15) 0%, transparent 100%);
+    border: 1px solid hsla(153, 40%, 30%, 0.2);
+  }
+
+  .verification-tier::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: var(--gradient-accent);
+    border-radius: 2px;
+  }
+
+  /* Navigation styling */
+  .nav-link {
+    @apply relative px-4 py-2 text-sm font-medium transition-colors duration-300;
+    color: hsla(45, 20%, 97%, 0.7);
+  }
+
+  .nav-link:hover {
+    color: hsl(45 20% 97%);
+  }
+
+  .nav-link.active {
+    color: hsl(30 45% 65%);
+  }
+
+  /* Marquee animation for news ticker */
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  /* Fade in animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  /* Pulse glow for icons */
+  @keyframes pulseGlow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsla(30, 45%, 65%, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 40px hsla(30, 45%, 65%, 0.4);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(147 35% 10%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(153 40% 30%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(30 45% 65%);
+}
