@@ -4,7 +4,12 @@ __pycache__/
 
 # Django
 db.sqlite3
+*.sqlite3
 media/
+
+# Environments
+.env
+venv/
 
 # Test & Verification Artifacts
 mau_forest_mock.tif
