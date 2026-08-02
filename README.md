@@ -64,10 +64,14 @@ source venv/bin/activate
 # 2. Install dependencies
 pip install -r requirements.txt
 
-# 3. Apply database migrations
+# 3. Configure the environment
+cp .env.example .env      # Windows: copy .env.example .env
+#    then set DJANGO_DEBUG=true in .env for local work
+
+# 4. Apply database migrations (creates db.sqlite3, which is not in git)
 python manage.py migrate
 
-# 4. (Optional) Populate data
+# 5. (Optional) Populate data
 #    Seed a small set of sample projects:
 python populate_projects.py
 #    Import the 388 gazetted forests with boundaries from the GeoJSON:
@@ -75,9 +79,19 @@ python import_forests.py
 #    Or generate simple square test boundaries for existing projects:
 python populate_boundaries.py
 
-# 5. Run the development server
+# 6. Run the development server
 python manage.py runserver
 ```
+
+### Configuration
+
+Settings are read from the environment, with `.env` loaded automatically when `python-dotenv` is installed. See [`.env.example`](.env.example).
+
+| Variable | Default | Notes |
+|---|---|---|
+| `DJANGO_SECRET_KEY` | random per start | Set it anywhere sessions need to survive a restart. |
+| `DJANGO_DEBUG` | `false` | Set `true` for local development only. Leaving it off means Django will not serve static files via `runserver`, so admin styling needs `--insecure` locally if you have not set it. |
+| `DJANGO_ALLOWED_HOSTS` | `localhost,127.0.0.1` | Comma-separated. |
 
 The API is then available at `http://127.0.0.1:8000/api/` and the admin at `http://127.0.0.1:8000/admin/` (create a superuser first with `python manage.py createsuperuser`).
 

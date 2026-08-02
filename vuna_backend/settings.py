@@ -10,22 +10,44 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
+
+from django.core.management.utils import get_random_secret_key
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load a local .env if python-dotenv is available. Optional, so that an
+# existing environment without the package keeps working.
+try:
+    from dotenv import load_dotenv
 
-# Quick-start development settings - unsuitable for production
+    load_dotenv(BASE_DIR / '.env')
+except ImportError:
+    pass
+
+
+def _env_flag(name, default=False):
+    return os.environ.get(name, str(default)).strip().lower() in ('1', 'true', 'yes', 'on')
+
+
+# Configuration comes from the environment. See .env.example.
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-@uj&jf0u_)v@dtpf4b0#o@ohb^$!fo+tbwv-$fh74*d*8v72(f'
+# Falls back to a throwaway key so the project still runs unconfigured. That
+# key changes on every start, which invalidates sessions: set DJANGO_SECRET_KEY
+# in any environment you care about.
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY') or get_random_secret_key()
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Off unless explicitly enabled, so a deployment cannot leak tracebacks by default.
+DEBUG = _env_flag('DJANGO_DEBUG', False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+    if host.strip()
+]
 
 
 # Application definition
